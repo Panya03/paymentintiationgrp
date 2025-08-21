@@ -1,12 +1,20 @@
+
 import React from "react";
+import Sidebar from "./Components/Sidebar";
+import './App.css';
 
-
-import Dashboard from "./Components/Dashboard";
-import "./Styles/custom.css";
 function App() {
-  // Role will later come from backend
-  const role = "operator"; // admin | creator | approver
-  return <Dashboard role={role} />;
+  const role = "approver"; // try: creator | manager | approver
+
+  return (
+    <div className="app">
+      <Sidebar role={role} />
+      <div class="content">
+        
+      </div>
+    </div>
+  );
 }
 
 export default App;
+
