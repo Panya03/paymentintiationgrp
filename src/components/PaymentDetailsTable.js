@@ -5,11 +5,7 @@ import UploadButton from './UploadButton';
 import DownloadTemplateButton from './DownloadTemplateButton';
 import { useState } from 'react';
 // Payment Details Table Component
-<<<<<<< HEAD
-const PaymentDetailsTable = ({ rows, updateRow, addRow, removeRow, errors, currentPage, totalPages, onPageChange, canAddMore }) => {
-=======
 const PaymentDetailsTable = ({ rows=[], updateRow, addRow, removeRow, errors, currentPage, totalPages, onPageChange, canAddMore }) => {
->>>>>>> d158b42 (merged and routed paymentform to dashboard)
   const [hover, setHover] = useState(false);
 
   return (

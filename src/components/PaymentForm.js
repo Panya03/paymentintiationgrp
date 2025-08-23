@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Save, Send, FileText} from 'lucide-react';
-<<<<<<< HEAD
-import Header from './Header';
-=======
 
->>>>>>> d158b42 (merged and routed paymentform to dashboard)
+import Header from './Header';
+
 import InstructionDetails from './InstructionDetails';
 import PaymentDetailsTable from './PaymentDetailsTable';
 import DraftManagement from './DraftManagement';
@@ -242,23 +240,14 @@ const handleDraft = () => {
     return errors.rows[actualIndex] || {};
   });
 
- return (
+return (
   <div className="min-vh-100 bg-light">
-  
-<<<<<<< HEAD
-    {!showDrafts && <Header />}
-=======
-   
->>>>>>> d158b42 (merged and routed paymentform to dashboard)
-
     {showDrafts ? (
-  
       <DraftManagement
         onEditDraft={handleEditDraft}
         onBackToCreate={() => setShowDrafts(false)}
       />
     ) : (
-  
       <div className="container-fluid px-4">
         <div className="mb-4 mt-3">
           <div className="d-flex justify-content-between align-items-center">
@@ -305,14 +294,14 @@ const handleDraft = () => {
             onClick={handleDraft}
             className="btn btn-secondary d-inline-flex align-items-center px-4 py-2"
           >
-            <Save className="me-2" style={{ width: '20px', height: '20px' }} />
+            <Save className="me-2" style={{ width: "20px", height: "20px" }} />
             Save Draft
           </button>
           <button
             onClick={submitTransaction}
             className="btn btn-success d-inline-flex align-items-center px-4 py-2"
           >
-            <Send className="me-2" style={{ width: '20px', height: '20px' }} />
+            <Send className="me-2" style={{ width: "20px", height: "20px" }} />
             Submit Transaction
           </button>
         </div>
@@ -321,4 +310,6 @@ const handleDraft = () => {
   </div>
 );
 };
+
 export default PaymentForm;
+
