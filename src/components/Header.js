@@ -1,39 +1,48 @@
-import React, { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
-
-// Header Component
-const Header = () => {
-  const [hover, setHover] = useState(false);
-
+function Header({ bankingType, setBankingType, search, setSearch, currentUser, usersData, switchUser, setSelectedAccount, setShowTxModal }) {
   return (
-    <div style={{ backgroundColor: "#003366" }} className="border-bottom px-4 py-3">
-      <div className="d-flex align-items-center">
-        <button
-          className="btn me-3 p-2 rounded"
-          style={{
-            backgroundColor: hover ? "#1976d2" : "#003366",
-            color: "white"
+    <header className="header">
+      <div className="header-left">
+        <select
+          value={bankingType}
+          onChange={(e) => {
+            setBankingType(e.target.value);
+            setSelectedAccount && setSelectedAccount(null);
+            setShowTxModal && setShowTxModal(false);
           }}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+          className="banking-dropdown"
         >
-          <ArrowLeft className="w-5 h-5 text-white" />
-        </button>
-        <div className="d-flex align-items-center">
-          <div className="  me-3 d-flex align-items-center justify-content-center" style={{width: '32px', height: '32px'}}>
-          <img 
-  src="/sc-Photoroom.png" 
-  alt="SC Logo" 
-  className="me-2" 
-  style={{ width: "30px", height: "30px", objectFit: "contain" }} 
-/>
-
-          </div>
-          <span className="h4 text-white fw-semibold mb-0 header-font">Standard Chartered</span>
+          <option>Priority Banking</option>
+          <option>Personal Banking</option>
+          <option>NRI Banking</option>
+          <option>Business Banking</option>
+        </select>
+      </div>
+      <div className="header-right">
+        <select className="country-dropdown">
+          <option>India</option>
+          <option>USA</option>
+          <option>UK</option>
+          <option>Singapore</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Search account..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="search-bar"
+        />
+        <div className="profile">
+          <div className="avatar">{currentUser.name[0]}</div>
+          <span className="username">{currentUser.name}</span>
+          <select className="user-switcher" onChange={(e) => switchUser(usersData[e.target.value])}>
+            {usersData.map((u, idx) => (
+              <option key={idx} value={idx}>{u.name}</option>
+            ))}
+          </select>
         </div>
       </div>
-    </div>
+    </header>
   );
-};
+}
 
 export default Header;

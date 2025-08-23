@@ -9,6 +9,7 @@ import App from './App';
 {/* import './high-contrast.css'; */} //pavan's css
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
