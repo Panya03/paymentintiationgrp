@@ -1,0 +1,592 @@
+:root {
+    --sc-primary: #003A8C;
+    --sc-primary-600: #0a49a1;
+    --sc-primary-700: #083b80;
+    --sc-accent: #00A88F;
+    --sc-accent-600: #009781;
+    --sc-accent-100: #E6FAF7;
+
+    --sc-success: #00A88F;
+    --sc-warning: #F2A900;
+    --sc-danger: #D0021B;
+
+    --sc-text: #0F2033;
+    --sc-muted: #6B7C93;
+    --sc-border: #E6ECF5;
+    --sc-bg: #F7F9FC;
+
+    --radius: 10px;
+    --shadow-sm: 0 1px 2px rgba(15, 32, 51, .06), 0 4px 12px rgba(15, 32, 51, .04);
+    --shadow-md: 0 6px 20px rgba(15, 32, 51, .08);
+}
+
+/* Base */
+body {
+    background: var(--sc-bg);
+    color: var(--sc-text);
+}
+
+/* Navbar */
+.app-navbar {
+    height: 60px;
+    background: linear-gradient(90deg, var(--sc-primary), var(--sc-primary-600));
+    box-shadow: var(--shadow-sm);
+}
+
+.app-navbar .navbar-brand {
+    font-weight: 700;
+    letter-spacing: .2px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+}
+
+.app-navbar .form-select {
+    background-color: rgba(255, 255, 255, .12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .2);
+}
+
+.app-navbar .form-select option {
+    color: #000;
+}
+
+/* Page layout */
+.page-wrap {
+    padding: 16px;
+}
+
+.card-panel {
+    background: #fff;
+    border: 1px solid var(--sc-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tabs */
+.nav-tabs {
+    border-bottom: 1px solid var(--sc-border);
+}
+
+.nav-tabs .nav-link {
+    color: var(--sc-muted);
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--sc-primary);
+    border-bottom-color: var(--sc-primary);
+    background: transparent;
+}
+
+/* Controls */
+.filters-row {
+    gap: 10px;
+}
+
+.input-group>.input-group-text {
+    background: #fff;
+    color: var(--sc-muted);
+}
+
+.form-select,
+.form-control {
+    border-radius: 8px !important;
+    border-color: var(--sc-border);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--sc-primary);
+    border-color: var(--sc-primary);
+}
+
+.btn-primary:hover {
+    background: var(--sc-primary-700);
+    border-color: var(--sc-primary-700);
+}
+
+.btn-outline-secondary {
+    color: var(--sc-primary);
+    border-color: var(--sc-primary);
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background: var(--sc-primary);
+    border-color: var(--sc-primary);
+}
+
+/* Table */
+.table-scroll {
+    overflow: auto;
+    border: 1px solid var(--sc-border);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+    border-bottom: 1px solid var(--sc-border) !important;
+    font-weight: 700;
+    color: var(--sc-muted);
+}
+
+.table tbody tr:hover {
+    background: #FAFCFF;
+}
+
+.table tbody td {
+    border-color: var(--sc-border);
+}
+
+th[role="button"] {
+    cursor: pointer;
+    user-select: none;
+}
+
+.money {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.badge.bg-success {
+    background-color: var(--sc-success) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--sc-warning) !important;
+    color: #2e2e2e;
+}
+
+.badge.bg-danger {
+    background-color: var(--sc-danger) !important;
+}
+
+/* Links */
+a.table-link,
+.btn-link {
+    color: var(--sc-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Dropdown */
+.dropdown-toggle.btn-light {
+    background: #fff;
+    border-color: var(--sc-border);
+    color: var(--sc-text);
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+}
+
+/* Modal / Summary */
+.modal-content {
+    border-radius: 14px;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--sc-border);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--sc-border);
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 14px 28px;
+}
+
+.summary-grid .label {
+    font-size: 12px;
+    color: var(--sc-muted);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.summary-grid .value {
+    font-weight: 600;
+    color: var(--sc-text);
+}
+
+.summary-grid .full {
+    grid-column: 1 / -1;
+}
+
+/* Utilities */
+.small-muted {
+    color: var(--sc-muted);
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.shadow-md {
+    box-shadow: var(--shadow-md);
+}
+
+/* Zebra rows */
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: #FBFDFF;
+}
+
+/* Add these styles to your existing styles.css */
+
+/* Layout shell with sidebar */
+.app-shell {
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 280px 1fr;
+    grid-template-areas:
+        "nav nav"
+        "sidebar main";
+    min-height: 100vh;
+}
+
+.app-navbar {
+    grid-area: nav;
+    z-index: 1001;
+}
+
+.app-sidebar {
+    grid-area: sidebar;
+    background: #fff;
+    border-right: 1px solid var(--sc-border);
+    overflow-y: auto;
+}
+
+.app-main {
+    grid-area: main;
+    min-width: 0;
+    overflow: auto;
+}
+
+/* Sidebar toggle states */
+.sidebar-closed .app-shell {
+    grid-template-columns: 0 1fr;
+}
+
+.sidebar-closed .app-sidebar {
+    display: none;
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sidebar content */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    padding: 16px;
+}
+
+/* Sidebar brand */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--sc-border);
+}
+
+/* Update brand logo styles in your existing styles.css */
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.logo-fallback {
+    width: 40px;
+    height: 40px;
+    background: var(--sc-primary);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* Alternative: Full-width logo */
+.brand-logo.full-width {
+    width: 100%;
+    height: 32px;
+    margin-bottom: 8px;
+}
+
+.brand-logo.full-width .logo-image {
+    height: 32px;
+    width: auto;
+    max-width: 100%;
+}
+
+
+.brand-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.brand-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sc-text);
+    line-height: 1.2;
+}
+
+.brand-subtitle {
+    font-size: 12px;
+    color: var(--sc-muted);
+    line-height: 1.2;
+}
+
+/* Sidebar sections */
+.sidebar-section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sc-text);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+/* Form elements in sidebar */
+.sidebar-section .form-group {
+    margin-bottom: 16px;
+}
+
+.sidebar-section .form-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--sc-muted);
+    margin-bottom: 4px;
+}
+
+.sidebar-section .form-text {
+    font-size: 11px;
+    color: var(--sc-muted);
+    margin-top: 4px;
+}
+
+/* Preferences */
+.preferences-list .form-check {
+    margin-bottom: 8px;
+}
+
+.preferences-list .form-check-label {
+    font-size: 13px;
+    color: var(--sc-text);
+}
+
+/* System info */
+.system-info .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.system-info .info-item div {
+    color: var(--sc-text);
+    font-weight: 500;
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--sc-border);
+}
+
+.sidebar-footer .btn-link {
+    color: var(--sc-muted);
+    text-decoration: none;
+    font-size: 12px;
+    text-align: left;
+}
+
+.sidebar-footer .btn-link:hover {
+    color: var(--sc-primary);
+}
+
+/* Quick action buttons */
+.sidebar-section .btn-sm {
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .app-shell {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "nav"
+            "main";
+    }
+
+    .app-sidebar {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 280px;
+        height: calc(100vh - 60px);
+        z-index: 1000;
+        box-shadow: var(--shadow-md);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar-open .app-sidebar {
+        transform: translateX(0);
+    }
+}
+
+/* Adjust existing page-wrap for sidebar layout */
+.page-wrap {
+    padding: 20px;
+}
+
+/* Add these styles to your existing styles.css */
+
+/* Compact view styles */
+.compact-view .table td,
+.compact-view .table th {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.875rem;
+}
+
+.compact-view .small-muted {
+    font-size: 10px !important;
+}
+
+/* No sticky headers option */
+.no-sticky-headers .table thead th {
+    position: static !important;
+}
+
+/* Active filter button styling */
+.sidebar-section .btn-primary {
+    background-color: var(--sc-primary);
+    border-color: var(--sc-primary);
+}
+
+/* Filter alert styling */
+.alert-info {
+    background-color: var(--sc-accent-100);
+    border-color: var(--sc-accent);
+    color: var(--sc-text);
+}
+
+.alert .btn-close-sm {
+    font-size: 0.75rem;
+}
+
+/* Tab count styling */
+.nav-tabs .nav-link {
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: 600;
+}
+
+/* Compact table styling */
+.table-compact td {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.875rem;
+    vertical-align: middle;
+}
+
+.table-compact th {
+    padding: 0.5rem 0.5rem !important;
+    font-size: 0.875rem;
+}
+
+.compact-text {
+    line-height: 1.2;
+}
+
+.table-compact .small-muted {
+    font-size: 0.75rem !important;
+    margin-top: 1px;
+}
+
+.table-compact .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* No sticky headers when preference is disabled */
+.position-static th {
+    position: static !important;
+}
+
+/* Enhanced modal styles for batch details */
+.modal-header .badge {
+    font-size: 0.75rem;
+}
+
+.summary-grid .value .fs-5 {
+    font-size: 1.25rem !important;
+}
+
+.summary-grid .value .font-monospace {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--sc-muted);
+}
+
+.modal-footer .small {
+    font-size: 0.875rem;
+}
