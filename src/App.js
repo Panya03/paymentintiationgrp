@@ -13,7 +13,8 @@ function App() {
   return (
     <Router>
       <div className="app-layout">
-        {/* ✅ Fixed: Pass the role prop to Sidebar */}
+         {role !== "batching" && <Sidebar role={role} />}
+        
         <Sidebar role={role} />
         <div className="content">
   <div className="container d-flex justify-content-center">

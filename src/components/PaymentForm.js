@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Save, Send, FileText} from 'lucide-react';
+import { Save, Send, FileText } from 'lucide-react';
 
 import Header from './Header';
 
@@ -12,7 +12,7 @@ import { saveDraftToStorage } from '../utils/draftUtils';
 // page component
 const PaymentForm = () => {
   const ROWS_PER_PAGE = 10;
-  
+
   // instruction details
   const [instructionDetails, setInstructionDetails] = useState({
     paymentCurrency: '',
@@ -44,7 +44,7 @@ const PaymentForm = () => {
 
   const [showDrafts, setShowDrafts] = useState(false);
 
- 
+
   //  helper to load a draft back 
   const handleEditDraft = (draft) => {
     if (!draft?.data) return;
@@ -58,7 +58,7 @@ const PaymentForm = () => {
   const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
   const endIndex = startIndex + ROWS_PER_PAGE;
   const currentRows = rows.slice(startIndex, endIndex);
-  const canAddMore = rows.length < 100; 
+  const canAddMore = rows.length < 100;
 
   // Update instruction details
   const updateInstructionDetails = (field, value) => {
@@ -66,7 +66,7 @@ const PaymentForm = () => {
       ...prev,
       [field]: value
     }));
-    
+
     // Clear error when user updates field
     if (errors.instruction[field]) {
       setErrors(prev => ({
@@ -88,7 +88,7 @@ const PaymentForm = () => {
       [field]: value
     };
     setRows(newRows);
-    
+
     // Clear error once field updates
     if (errors.rows[actualIndex] && errors.rows[actualIndex][field]) {
       const newErrors = [...errors.rows];
@@ -118,7 +118,7 @@ const PaymentForm = () => {
         additionalNotes: ''
       };
       setRows([...rows, newRow]);
-      
+
       // Navigate to the page with the new row
       const newTotalPages = Math.ceil((rows.length + 1) / ROWS_PER_PAGE);
       setCurrentPage(newTotalPages);
@@ -131,7 +131,7 @@ const PaymentForm = () => {
       const actualIndex = startIndex + displayIndex;
       const newRows = rows.filter((_, index) => index !== actualIndex);
       setRows(newRows);
-  
+
       const newErrorRows = errors.rows.filter((_, index) => index !== actualIndex);
       setErrors(prev => ({
         ...prev,
@@ -174,7 +174,7 @@ const PaymentForm = () => {
     // Validate rows
     rows.forEach((row, index) => {
       const rowErrors = {};
-      
+
       if (!row.paymentMethod) rowErrors.paymentMethod = 'Required';
       if (!row.payeeDetails) rowErrors.payeeDetails = 'Required';
       if (!row.payeeNature) rowErrors.payeeNature = 'Required';
@@ -191,35 +191,35 @@ const PaymentForm = () => {
     });
 
     setErrors(newErrors);
-    return Object.keys(newErrors.instruction).length === 0 && 
-           newErrors.rows.every(rowError => Object.keys(rowError).length === 0);
+    return Object.keys(newErrors.instruction).length === 0 &&
+      newErrors.rows.every(rowError => Object.keys(rowError).length === 0);
   };
 
   // Save draft
-const handleDraft = () => {
-     if (!validateForm()) {
-    // If validation fails, do not save draft
-    return;
-  }
- 
-  const draft = {
-    id: Date.now().toString(),
-    name: instructionDetails.paymentReference || "Untitled Draft",
-    debitAccount: instructionDetails.debitAccount,
-    status: "draft",
-    currency: instructionDetails.paymentCurrency,
-    totalAmount: rows.reduce((sum, row) => sum + Number(row.amount || 0), 0),
-    paymentCount: rows.length,
-    createdDate: new Date().toLocaleDateString(),
-    lastModified: new Date().toLocaleDateString(),
-    data: {
-      instructionDetails,
-      rows,
-    },
+  const handleDraft = () => {
+    if (!validateForm()) {
+      // If validation fails, do not save draft
+      return;
+    }
+
+    const draft = {
+      id: Date.now().toString(),
+      name: instructionDetails.paymentReference || "Untitled Draft",
+      debitAccount: instructionDetails.debitAccount,
+      status: "draft",
+      currency: instructionDetails.paymentCurrency,
+      totalAmount: rows.reduce((sum, row) => sum + Number(row.amount || 0), 0),
+      paymentCount: rows.length,
+      createdDate: new Date().toLocaleDateString(),
+      lastModified: new Date().toLocaleDateString(),
+      data: {
+        instructionDetails,
+        rows,
+      },
+    };
+    saveDraftToStorage(draft);
+    setShowDrafts(true); // Show the drafts screen
   };
-  saveDraftToStorage(draft);
-  setShowDrafts(true); // Show the drafts screen
-};
   // Submit transaction
   const submitTransaction = () => {
     if (validateForm()) {
@@ -227,7 +227,7 @@ const handleDraft = () => {
       const confirmation = window.confirm(
         `Are you sure you want to submit ${rows.length} payment(s) with total amount of ${totalAmount.toFixed(2)} ${instructionDetails.paymentCurrency}?`
       );
-      
+
       if (confirmation) {
         alert('Payment instructions submitted successfully! Transaction ID: TXN' + Math.random().toString(36).substr(2, 9).toUpperCase());
       }
@@ -240,75 +240,75 @@ const handleDraft = () => {
     return errors.rows[actualIndex] || {};
   });
 
-return (
-  <div className="min-vh-100 bg-light">
-    {showDrafts ? (
-      <DraftManagement
-        onEditDraft={handleEditDraft}
-        onBackToCreate={() => setShowDrafts(false)}
-      />
-    ) : (
-      <div className="container-fluid px-4">
-        <div className="mb-4 mt-3">
-          <div className="d-flex justify-content-between align-items-center">
-            <h1 className="h2 fw-bold text-dark mb-0">
-              Create Payment Instructions
-            </h1>
+  return (
+    <div className="min-vh-100 bg-light">
+      {showDrafts ? (
+        <DraftManagement
+          onEditDraft={handleEditDraft}
+          onBackToCreate={() => setShowDrafts(false)}
+        />
+      ) : (
+        <div className="container-fluid px-4">
+          <div className="mb-4 mt-3">
+            <div className="d-flex justify-content-between align-items-center">
+              <h1 className="h2 fw-bold text-dark mb-0">
+                Create Payment Instructions
+              </h1>
+              <button
+                onClick={() => setShowDrafts(true)}
+                className="btn btn-outline-primary d-flex align-items-center"
+              >
+                <FileText className="me-2" size={18} />
+                View Drafts
+              </button>
+            </div>
+            <p className="text-muted mt-2 mb-0">
+              Set up your payment instructions with detailed beneficiary information
+            </p>
+          </div>
+
+          <div className="mb-4">
+            <InstructionDetails
+              instructionDetails={instructionDetails}
+              updateInstructionDetails={updateInstructionDetails}
+              errors={errors.instruction}
+            />
+          </div>
+
+          <div className="mb-4">
+            <PaymentDetailsTable
+              rows={currentRows}
+              updateRow={updateRow}
+              addRow={addRow}
+              removeRow={removeRow}
+              errors={currentRowErrors}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              canAddMore={canAddMore}
+            />
+          </div>
+
+          <div className="d-flex justify-content-end gap-3 mt-4">
             <button
-              onClick={() => setShowDrafts(true)}
-              className="btn btn-outline-primary d-flex align-items-center"
+              onClick={handleDraft}
+              className="btn btn-secondary d-inline-flex align-items-center px-4 py-2"
             >
-              <FileText className="me-2" size={18} />
-              View Drafts
+              <Save className="me-2" style={{ width: "20px", height: "20px" }} />
+              Save Draft
+            </button>
+            <button
+              onClick={submitTransaction}
+              className="btn btn-success d-inline-flex align-items-center px-4 py-2"
+            >
+              <Send className="me-2" style={{ width: "20px", height: "20px" }} />
+              Submit Transaction
             </button>
           </div>
-          <p className="text-muted mt-2 mb-0">
-            Set up your payment instructions with detailed beneficiary information
-          </p>
         </div>
-
-        <div className="mb-4">
-          <InstructionDetails
-            instructionDetails={instructionDetails}
-            updateInstructionDetails={updateInstructionDetails}
-            errors={errors.instruction}
-          />
-        </div>
-
-        <div className="mb-4">
-          <PaymentDetailsTable
-            rows={currentRows}
-            updateRow={updateRow}
-            addRow={addRow}
-            removeRow={removeRow}
-            errors={currentRowErrors}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            canAddMore={canAddMore}
-          />
-        </div>
-
-        <div className="d-flex justify-content-end gap-3 mt-4">
-          <button
-            onClick={handleDraft}
-            className="btn btn-secondary d-inline-flex align-items-center px-4 py-2"
-          >
-            <Save className="me-2" style={{ width: "20px", height: "20px" }} />
-            Save Draft
-          </button>
-          <button
-            onClick={submitTransaction}
-            className="btn btn-success d-inline-flex align-items-center px-4 py-2"
-          >
-            <Send className="me-2" style={{ width: "20px", height: "20px" }} />
-            Submit Transaction
-          </button>
-        </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
 };
 
 export default PaymentForm;
