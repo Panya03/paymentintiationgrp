@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+<<<<<<< HEAD
 body,
 .header,
 h1, h2, h3, h4, h5, h6,
@@ -22,6 +23,13 @@ h1, h2, h3, h4, h5, h6,
 
 
 
+=======
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+>>>>>>> vartika
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
