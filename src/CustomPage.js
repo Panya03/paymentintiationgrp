@@ -1,18 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function CustomPage({ onSignUp }) {
-  const [dialog, setDialog] = useState('none');
-  const [countdown, setCountdown] = useState(30);
-
-  useEffect(() => {
-    const timers = [];
-    setDialog('error');
-    timers.push(setTimeout(() => setDialog('lock'), 2000));
-    timers.push(setTimeout(() => setDialog('security'), 4000));
-    timers.push(setTimeout(() => setDialog('none'), 6000));
-    return () => timers.forEach(clearTimeout);
-  }, []);
+function CustomPage({ onSignUp, authenticate }) {
+  const [employeeId, setEmployeeId] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginResult, setLoginResult] = useState(null);
 
   return (
     <div style={{
@@ -34,7 +26,7 @@ function CustomPage({ onSignUp }) {
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.25)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="dialog-animated-border" style={{ minWidth: 320, textAlign: 'center', background: 'var(--dialog-bg, #fff)', borderRadius: 18, boxShadow: '0 8px 32px #0072ce33, 0 2px 8px #00b14033', padding: 24 }}>
             <h5 className="mb-3" style={{ color: '#d90429', fontWeight: 700 }}>Login Failed</h5>
-            <div style={{ color: 'var(--dialog-text, #222)' }}>Incorrect Bank ID or Password. Please try again.</div>
+            <div style={{ color: 'var(--dialog-text, #222)' }}>Incorrect Employee ID or Password. Please try again.</div>
           </div>
         </div>
       )}
@@ -89,21 +81,33 @@ function CustomPage({ onSignUp }) {
                 <div className="text-center text-muted mb-4" style={{ fontSize: '1.1rem' }}>
                   Internal Transaction Approval System
                 </div>
-                <form>
+                <form onSubmit={e => {
+                  e.preventDefault();
+                  if (authenticate) {
+                    const result = authenticate(employeeId, password);
+                    setLoginResult(result);
+                  }
+                }}>
                   <div className="mb-3">
-                    <label htmlFor="bankId" className="form-label">Bank ID</label>
-                    <input type="text" className="form-control" id="bankId" placeholder="Enter your Bank ID" />
+                    <label htmlFor="employeeId" className="form-label">Employee ID</label>
+                    <input type="text" className="form-control" id="employeeId" placeholder="Enter Employee ID" value={employeeId} onChange={e => setEmployeeId(e.target.value)} />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Enter your password" />
+                    <input type="password" className="form-control" id="password" placeholder="Enter your password" value={password} onChange={e => setPassword(e.target.value)} />
                   </div>
-                  <button type="submit" className="btn btn-primary w-100 mb-3" style={{ fontSize: '1.1rem', borderRadius: '8px' }}>Sign In</button>
                   <button type="submit" className="btn btn-primary w-100 mb-3" style={{ fontSize: '1.1rem', borderRadius: '8px', background: '#0050a8', color: '#fff', border: '2px solid #0050a8', fontWeight: 600, textShadow: '0 1px 2px #003366' }}>Sign In</button>
                   <div className="d-flex justify-content-between align-items-center mb-2">
                     <a href="#" className="text-decoration-none">Forgot Password?</a>
                     <button type="button" className="btn btn-link p-0" onClick={onSignUp}>Sign Up</button>
                   </div>
+                  {loginResult && (
+                    loginResult.success ? (
+                      <div className="alert alert-success mt-3">Login successful! Role: Level {loginResult.role}</div>
+                    ) : (
+                      <div className="alert alert-danger mt-3">Incorrect Employee ID or Password.</div>
+                    )
+                  )}
                 </form>
                 <hr />
                 <div className="text-center text-muted" style={{ fontSize: '0.95rem' }}>
