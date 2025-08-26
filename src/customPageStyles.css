@@ -1,0 +1,111 @@
+/* Content area for CustomPage main card */
+.signup-content {
+  min-height: 60vh;
+}
+/* customPageStyles.css - Used by CustomPage.js */
+
+.custom-bg {
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(135deg, #eaf6ff 0%, #f6fff6 100%);
+  background-image: linear-gradient(120deg, #0050a8 0%, #00b140 100%);
+  animation: bgMove 12s ease-in-out infinite alternate;
+  transition: background 0.5s;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.custom-bar-blue {
+  height: 12px;
+  background: linear-gradient(90deg, #0050a8 0%, #0096ff 100%);
+  box-shadow: 0 2px 12px #0050a8cc;
+}
+
+.custom-bar-green {
+  height: 12px;
+  background: linear-gradient(90deg, #00d65b 0%, #00b140 100%);
+  box-shadow: 0 2px 12px #00d65bcc;
+}
+
+.custom-logo {
+  height: 40px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 4px 12px;
+}
+
+.custom-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-dialog-box {
+  min-width: 320px;
+  text-align: center;
+  background: var(--dialog-bg, #fff);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #0072ce33, 0 2px 8px #00b14033;
+  padding: 24px;
+}
+
+.custom-dialog-box.lock {
+  min-width: 340px;
+  box-shadow: 0 8px 32px #00b14033, 0 2px 8px #0072ce33;
+}
+.custom-dialog-box.security {
+  min-width: 340px;
+  box-shadow: 0 8px 32px #0050a833, 0 2px 8px #00b14033;
+}
+
+.custom-dialog-title-error {
+  color: #d90429;
+  font-weight: 700;
+}
+.custom-dialog-title-lock {
+  color: #ffb300;
+  font-weight: 700;
+}
+.custom-dialog-title-security {
+  color: #0072ce;
+  font-weight: 700;
+}
+.custom-dialog-text {
+  color: var(--dialog-text, #222);
+}
+.custom-dialog-wait {
+  color: var(--dialog-text, #222);
+}
+
+.custom-card {
+  border-radius: 16px;
+}
+
+.custom-title {
+  font-weight: 500;
+}
+
+.custom-desc {
+  font-size: 1.1rem;
+}
+
+.custom-btn {
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background: #0050a8;
+  color: #fff;
+  border: 2px solid #0050a8;
+  font-weight: 600;
+  text-shadow: 0 1px 2px #003366;
+}

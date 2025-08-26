@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './accessibilityToolsStyles.css';
 
 function AccessibilityTools({ onReadout }) {
   const [highContrast, setHighContrast] = useState(false);
@@ -28,7 +29,7 @@ function AccessibilityTools({ onReadout }) {
   }
 
   return (
-    <div style={{ position: 'fixed', top: 16, right: 16, zIndex: 2000, background: '#fff', borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.12)', padding: 12, display: 'flex', gap: 8 }}>
+    <div className="accessibility-tools">
       <button className="btn btn-outline-secondary btn-sm" onClick={onReadout} title="Read page aloud">
         <span role="img" aria-label="Speaker">🔊</span>
       </button>
